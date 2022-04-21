@@ -105,4 +105,14 @@ hypertraceDocker {
       port.set(9012)
     }
   }
+  image("secondImage") {
+    javaApplication {
+      port.set(9012)
+    }
+  }
+  tag("tagForSecondImageOnly") {
+    onlyIf { candidateImage ->
+      candidateImage.name == "secondImage"
+    }
+  }
 }
